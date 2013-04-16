@@ -42,7 +42,7 @@ get_header(); ?>
 				the_post();
 				get_template_part( '/partials/content', get_post_format() );
 			}
-			the_bootstrap_content_nav();
+			cabarave_content_nav();
 		else :
 			get_template_part( '/partials/content', 'not-found' );
 		endif;

@@ -22,14 +22,14 @@ tha_entry_before(); ?>
 		</hgroup>
 
 		<div class="entry-meta">
-			<?php the_bootstrap_posted_on(); ?>
+			<?php cabarave_posted_on(); ?>
 		</div><!-- .entry-meta -->
 	</header><!-- .entry-header -->
 
 	
 	<div class="entry-content row">
 		<?php
-		$the_bootstrap_images = get_children( array(
+		$cabarave_images = get_children( array(
 			'post_parent'		=>	$post->ID,
 			'post_type'			=>	'attachment',
 			'post_mime_type'	=>	'image',
@@ -37,9 +37,9 @@ tha_entry_before(); ?>
 			'order'				=>	'ASC',
 			'numberposts'		=>	999
 		) );
-		if ( $the_bootstrap_images ) :
-			$the_bootstrap_total_images	=	count( $the_bootstrap_images );
-			$the_bootstrap_images		=	array_slice( $the_bootstrap_images, 0, 10 );
+		if ( $cabarave_images ) :
+			$cabarave_total_images	=	count( $cabarave_images );
+			$cabarave_images		=	array_slice( $cabarave_images, 0, 10 );
 		?>
 		
 		<div class="span3">
@@ -49,8 +49,8 @@ tha_entry_before(); ?>
 				<em>
 				<?php
 				printf(
-					_n( 'This gallery contains <strong>%1$s photo</strong>.', 'This gallery contains <strong>%1$s photos</strong>.', $the_bootstrap_total_images, 'cabarave' ),
-					number_format_i18n( $the_bootstrap_total_images )
+					_n( 'This gallery contains <strong>%1$s photo</strong>.', 'This gallery contains <strong>%1$s photos</strong>.', $cabarave_total_images, 'cabarave' ),
+					number_format_i18n( $cabarave_total_images )
 				); ?>
 				</em>
 			</p>
@@ -59,13 +59,13 @@ tha_entry_before(); ?>
 
 			<!-- Carousel items -->
 			<div class="carousel-inner">
-				<?php foreach ( $the_bootstrap_images as $the_bootstrap_image ) : ?>
+				<?php foreach ( $cabarave_images as $cabarave_image ) : ?>
 				<figure class="item">
-					<?php echo wp_get_attachment_image( $the_bootstrap_image->ID, array( 470, 353 ) ); 
-					if ( has_excerpt( $the_bootstrap_image->ID ) ) :?>
+					<?php echo wp_get_attachment_image( $cabarave_image->ID, array( 470, 353 ) ); 
+					if ( has_excerpt( $cabarave_image->ID ) ) :?>
 					<figcaption class="carousel-caption">
-						<h4><?php echo get_the_title( $the_bootstrap_image->ID ); ?></h4>
-						<p><?php echo apply_filters( 'get_the_excerpt', $the_bootstrap_image->post_excerpt ); ?></p>
+						<h4><?php echo get_the_title( $cabarave_image->ID ); ?></h4>
+						<p><?php echo apply_filters( 'get_the_excerpt', $cabarave_image->post_excerpt ); ?></p>
 					</figcaption>
 					<?php endif; ?>
 				</figure>

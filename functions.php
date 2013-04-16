@@ -1,13 +1,12 @@
 <?php
 /** functions.php
  *
- * @author		Konstantin Obenland
+ * @author		Bret Holstein, Konstantin Obenland
  * @package		Cabarave
  * @since		1.0.0 - 05.02.2012
  */
 
-
-if ( ! function_exists( 'the_bootstrap_setup' ) ):
+if ( ! function_exists( 'cabarave_setup' ) ):
 /**
  * Sets up theme defaults and registers support for various WordPress features.
  *
@@ -16,7 +15,7 @@ if ( ! function_exists( 'the_bootstrap_setup' ) ):
  *
  * @return	void
  */
-function the_bootstrap_setup() {
+function cabarave_setup() {
 	global $content_width;
 	
 	if ( ! isset( $content_width ) ) {
@@ -25,7 +24,9 @@ function the_bootstrap_setup() {
 	
 	load_theme_textdomain( 'cabarave', get_template_directory() . '/lang' );
 	
-	add_theme_support( 'automatic-feed-links' );
+        add_theme_support( 'woocommerce' );
+
+        add_theme_support( 'automatic-feed-links' );
 	
 	add_theme_support( 'post-thumbnails' );
 
@@ -82,12 +83,50 @@ function the_bootstrap_setup() {
 		'header-menu'  	=>	__( 'Header Menu', 'cabarave' ),
 		'footer-menu' 	=>	__( 'Footer Menu', 'cabarave' )
 	) );
+        
+        /*
+         * Unhook and hook woocommerce themes
+         */
+        
+        remove_action( 'woocommerce_before_main_content', 'woocommerce_output_content_wrapper', 10);
+        remove_action( 'woocommerce_after_main_content', 'woocommerce_output_content_wrapper_end', 10);
+        
+        
 	
-} // the_bootstrap_setup
+} // cabarave_setup
 endif;
-add_action( 'after_setup_theme', 'the_bootstrap_setup' );
+add_action( 'after_setup_theme', 'cabarave_setup' );
 
+/*
+ * Wordpress SEO Integration
+ * 
+ * @author      Bret Holstein
+ * @since       2.0.1 - 17.04.2013
+ * 
+ */
 
+function cabarave_wordpress_seo() {
+	if ( function_exists( 'yoast_breadcrumb' ) ) {
+		yoast_breadcrumb( '<nav id="breadcrumb" class="breadcrumb">', '</nav>' );
+	}    
+}
+add_action( 'tha_content_top', 'cabarave_wordpress_seo' );
+
+/*
+ * Woocommerce theme hooks for container.
+ */
+add_action('woocommerce_before_main_content', 'cabarave_wrapper_start', 10);
+add_action('woocommerce_after_main_content', 'cabarave_wrapper_end', 10);
+
+function my_theme_wrapper_start() { ?>
+  <section id="primary" class="content-area">
+    <div id="content" class="site-content" role="main"> <?php
+}
+
+function my_theme_wrapper_end() { ?>
+		</div><!-- #content -->
+	</section><!-- #primary --> <?php
+}
 /**
  * Returns the options object for Cabarave.
  *
@@ -96,10 +135,10 @@ add_action( 'after_setup_theme', 'the_bootstrap_setup' );
  *
  * @return	stdClass	Theme Options
  */
-function the_bootstrap_options() {
+function cabarave_options() {
 	return (object) wp_parse_args(
-		get_option( 'the_bootstrap_theme_options', array() ),
-		the_bootstrap_get_default_theme_options()
+		get_option( 'cabarave_theme_options', array() ),
+		cabarave_get_default_theme_options()
 	);
 }
 
@@ -112,7 +151,7 @@ function the_bootstrap_options() {
  *
  * @return	void
  */
-function the_bootstrap_get_default_theme_options() {
+function cabarave_get_default_theme_options() {
 	$default_theme_options	=	array(
 		'theme_layout'		=>	'content-sidebar',
 		'navbar_site_name'	=>	false,
@@ -121,7 +160,7 @@ function the_bootstrap_get_default_theme_options() {
 		'navbar_position'	=>	'static',
 	);
 
-	return apply_filters( 'the_bootstrap_default_theme_options', $default_theme_options );
+	return apply_filters( 'cabarave_default_theme_options', $default_theme_options );
 }
 
 
@@ -133,13 +172,13 @@ function the_bootstrap_get_default_theme_options() {
  *
  * @return	void
  */
-function the_bootstrap_layout_classes( $existing_classes ) {
-	$classes = array( the_bootstrap_options()->theme_layout );
-	$classes = apply_filters( 'the_bootstrap_layout_classes', $classes );
+function cabarave_layout_classes( $existing_classes ) {
+	$classes = array( cabarave_options()->theme_layout );
+	$classes = apply_filters( 'cabarave_layout_classes', $classes );
 
 	return array_merge( $existing_classes, $classes );
 }
-add_filter( 'body_class', 'the_bootstrap_layout_classes' );
+add_filter( 'body_class', 'cabarave_layout_classes' );
 
 
 /**
@@ -150,9 +189,9 @@ add_filter( 'body_class', 'the_bootstrap_layout_classes' );
  *
  * @return	void
  */
-function the_bootstrap_custom_background_setup() {
+function cabarave_custom_background_setup() {
 	
-	$args = apply_filters( 'the_bootstrap_custom_background_args',  array(
+	$args = apply_filters( 'cabarave_custom_background_args',  array(
 		'default-color'	=>	'EFEFEF',
 	) );
 	
@@ -164,7 +203,7 @@ function the_bootstrap_custom_background_setup() {
 		add_custom_background();
 	}
 }
-add_action( 'after_setup_theme', 'the_bootstrap_custom_background_setup' );
+add_action( 'after_setup_theme', 'cabarave_custom_background_setup' );
 
 
 /**
@@ -175,7 +214,7 @@ add_action( 'after_setup_theme', 'the_bootstrap_custom_background_setup' );
  *
  * @return	void
  */
-function the_bootstrap_widgets_init() {
+function cabarave_widgets_init() {
 
 	register_sidebar( array(
 		'name'			=>	__( 'Main Sidebar', 'cabarave' ),
@@ -197,12 +236,12 @@ function the_bootstrap_widgets_init() {
 	) );
 
 	include_once( 'inc/cabarave-image-meta-widget.php' );
-	register_widget( 'The_Bootstrap_Image_Meta_Widget' );
+	register_widget( 'cabarave_Image_Meta_Widget' );
 	
 	include_once( 'inc/cabarave-gallery-widget.php' );
-	register_widget( 'The_Bootstrap_Gallery_Widget' );
+	register_widget( 'cabarave_Gallery_Widget' );
 }
-add_action( 'widgets_init', 'the_bootstrap_widgets_init' );
+add_action( 'widgets_init', 'cabarave_widgets_init' );
 
 
 /**
@@ -213,10 +252,10 @@ add_action( 'widgets_init', 'the_bootstrap_widgets_init' );
  *
  * @return	void
  */
-function the_bootstrap_register_scripts_styles() {
+function cabarave_register_scripts_styles() {
 
 	if ( ! is_admin() ) {
-		$theme_version = _the_bootstrap_version();
+		$theme_version = _cabarave_version();
 		$suffix = ( defined('SCRIPT_DEBUG') AND SCRIPT_DEBUG ) ? '' : '.min';
 			
 		/**
@@ -256,7 +295,7 @@ function the_bootstrap_register_scripts_styles() {
 		);
 	}
 }
-add_action( 'init', 'the_bootstrap_register_scripts_styles' );
+add_action( 'init', 'cabarave_register_scripts_styles' );
 
 
 /**
@@ -267,10 +306,10 @@ add_action( 'init', 'the_bootstrap_register_scripts_styles' );
  *
  * @return	void
  */
-function the_bootstrap_print_scripts() {
+function cabarave_print_scripts() {
 	wp_enqueue_script( 'cabarave' );
 }
-add_action( 'wp_enqueue_scripts', 'the_bootstrap_print_scripts' );
+add_action( 'wp_enqueue_scripts', 'cabarave_print_scripts' );
 
 
 /**
@@ -283,7 +322,7 @@ add_action( 'wp_enqueue_scripts', 'the_bootstrap_print_scripts' );
  *
  * @return	void
  */
-function the_bootstrap_print_ie_scripts() {
+function cabarave_print_ie_scripts() {
 	?>
 	<!--[if lt IE 9]>
 		<script src="<?php echo get_template_directory_uri(); ?>/js/html5shiv.min.js" type="text/javascript"></script>
@@ -291,7 +330,7 @@ function the_bootstrap_print_ie_scripts() {
 	<![endif]-->
 	<?php
 }
-add_action( 'wp_head', 'the_bootstrap_print_ie_scripts', 11 );
+add_action( 'wp_head', 'cabarave_print_ie_scripts', 11 );
 
 
 /**
@@ -302,12 +341,12 @@ add_action( 'wp_head', 'the_bootstrap_print_ie_scripts', 11 );
  *
  * @return	void
  */
-function the_bootstrap_comment_reply() {
+function cabarave_comment_reply() {
 	if ( get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
 }
-add_action( 'comment_form_before', 'the_bootstrap_comment_reply' );
+add_action( 'comment_form_before', 'cabarave_comment_reply' );
 
 
 /**
@@ -321,15 +360,15 @@ add_action( 'comment_form_before', 'the_bootstrap_comment_reply' );
  *
  * @return	void
  */
-function the_bootstrap_print_styles() {
+function cabarave_print_styles() {
 	if ( is_child_theme() ) {
 		wp_enqueue_style( 'cabarave-child', get_stylesheet_uri(), array( 'cabarave' ) );
 	} else {
 		wp_enqueue_style( 'cabarave' );
 	}
 	
-	if ( 'static' != the_bootstrap_options()->navbar_position ) {
-		$top_bottom	=	str_replace( 'navbar-fixed-', '', the_bootstrap_options()->navbar_position );
+	if ( 'static' != cabarave_options()->navbar_position ) {
+		$top_bottom	=	str_replace( 'navbar-fixed-', '', cabarave_options()->navbar_position );
 		$css		=	"body > .container{margin-{$top_bottom}:68px;}@media(min-width: 980px){body > .container{margin-{$top_bottom}:58px;}}";
 	
 		if ( is_admin_bar_showing() AND 'top' == $top_bottom )
@@ -341,10 +380,10 @@ function the_bootstrap_print_styles() {
 			echo "<style type='text/css'>\n{$css}\n</style>\n";
 	}
 }
-add_action( 'wp_enqueue_scripts', 'the_bootstrap_print_styles' );
+add_action( 'wp_enqueue_scripts', 'cabarave_print_styles' );
 
 
-if ( ! function_exists( 'the_bootstrap_credits' ) ) :
+if ( ! function_exists( 'cabarave_credits' ) ) :
 /**
  * Prints HTML with meta information for the current post-date/time and author,
  * comment and edit link
@@ -354,7 +393,7 @@ if ( ! function_exists( 'the_bootstrap_credits' ) ) :
  *
  * @return	void
  */
-function the_bootstrap_credits() {
+function cabarave_credits() {
 	printf(
 		'<span class="credits alignleft">' . __( '&copy; %1$s <a href="%2$s">%3$s</a>, all rights reserved.', 'cabarave' ) . '</span>',
 		date( 'Y' ),
@@ -376,7 +415,7 @@ endif;
  *
  * @return	string
  */
-function the_bootstrap_wp_title( $title, $sep ) {
+function cabarave_wp_title( $title, $sep ) {
 	
 	if ( ! is_feed() ) {
 		$title .= get_bloginfo( 'name' );
@@ -388,7 +427,7 @@ function the_bootstrap_wp_title( $title, $sep ) {
 
 	return $title;
 }
-add_filter( 'wp_title', 'the_bootstrap_wp_title', 1, 2 );
+add_filter( 'wp_title', 'cabarave_wp_title', 1, 2 );
 
 
 /**
@@ -401,13 +440,13 @@ add_filter( 'wp_title', 'the_bootstrap_wp_title', 1, 2 );
  *
  * @return	string
  */
-function the_bootstrap_continue_reading_link() {
+function cabarave_continue_reading_link() {
 	return ' <a href="'. esc_url( get_permalink() ) . '">' . __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'cabarave' ) . '</a>';
 }
 
 
 /**
- * Replaces "[...]" (appended to automatically generated excerpts) with an ellipsis and the_bootstrap_continue_reading_link().
+ * Replaces "[...]" (appended to automatically generated excerpts) with an ellipsis and cabarave_continue_reading_link().
  *
  * To override this in a child theme, remove the filter and add your own
  * function tied to the excerpt_more filter hook.
@@ -419,10 +458,10 @@ function the_bootstrap_continue_reading_link() {
  *
  * @return	string
  */
-function the_bootstrap_auto_excerpt_more( $more ) {
-	return '&hellip;' . the_bootstrap_continue_reading_link();
+function cabarave_auto_excerpt_more( $more ) {
+	return '&hellip;' . cabarave_continue_reading_link();
 }
-add_filter( 'excerpt_more', 'the_bootstrap_auto_excerpt_more' );
+add_filter( 'excerpt_more', 'cabarave_auto_excerpt_more' );
 
 
 /**
@@ -438,13 +477,13 @@ add_filter( 'excerpt_more', 'the_bootstrap_auto_excerpt_more' );
  *
  * @return	string
  */
-function the_bootstrap_custom_excerpt_more( $output ) {
+function cabarave_custom_excerpt_more( $output ) {
 	if ( has_excerpt() AND ! is_attachment() ) {
-		$output .= the_bootstrap_continue_reading_link();
+		$output .= cabarave_continue_reading_link();
 	}
 	return $output;
 }
-add_filter( 'get_the_excerpt', 'the_bootstrap_custom_excerpt_more' );
+add_filter( 'get_the_excerpt', 'cabarave_custom_excerpt_more' );
 
 
 /**
@@ -457,11 +496,11 @@ add_filter( 'get_the_excerpt', 'the_bootstrap_custom_excerpt_more' );
  *
  * @return	array
  */
-function the_bootstrap_page_menu_args( $args ) {
+function cabarave_page_menu_args( $args ) {
 	$args['show_home'] = true;
 	return $args;
 }
-add_filter( 'wp_page_menu_args', 'the_bootstrap_page_menu_args' );
+add_filter( 'wp_page_menu_args', 'cabarave_page_menu_args' );
 
 
 /**
@@ -475,7 +514,7 @@ add_filter( 'wp_page_menu_args', 'the_bootstrap_page_menu_args' );
  *
  * @return	string
  */
-function the_bootstrap_enhanced_image_navigation( $url, $id ) {
+function cabarave_enhanced_image_navigation( $url, $id ) {
     
 	if ( is_attachment() AND wp_attachment_is_image( $id ) ) {
 		$image = get_post( $id );
@@ -485,7 +524,7 @@ function the_bootstrap_enhanced_image_navigation( $url, $id ) {
     
     return $url;
 }
-add_filter( 'attachment_link', 'the_bootstrap_enhanced_image_navigation', 10, 2 );
+add_filter( 'attachment_link', 'cabarave_enhanced_image_navigation', 10, 2 );
 
 
 /**
@@ -496,7 +535,7 @@ add_filter( 'attachment_link', 'the_bootstrap_enhanced_image_navigation', 10, 2 
  *
  * @return	void
  */
-function the_bootstrap_comments_list() {
+function cabarave_comments_list() {
 	if ( post_password_required() ) : ?>
 		<div id="comments">
 			<p class="nopassword"><?php _e( 'This post is password protected. Enter the password to view any comments.', 'cabarave' ); ?></p>
@@ -513,19 +552,19 @@ function the_bootstrap_comments_list() {
 						number_format_i18n( get_comments_number() ), '<span>' . get_the_title() . '</span>' ); ?>
 			</h2>
 		
-			<?php the_bootstrap_comment_nav(); ?>
+			<?php cabarave_comment_nav(); ?>
 		
 			<ol class="commentlist unstyled">
-				<?php wp_list_comments( array( 'callback' => 'the_bootstrap_comment' ) ); ?>
+				<?php wp_list_comments( array( 'callback' => 'cabarave_comment' ) ); ?>
 			</ol><!-- .commentlist .unstyled -->
 		
-			<?php the_bootstrap_comment_nav(); ?>
+			<?php cabarave_comment_nav(); ?>
 		
 		</div><!-- #comments -->
 	<?php endif;
 }
-add_action( 'comment_form_before', 'the_bootstrap_comments_list', 0 );
-add_action( 'comment_form_comments_closed', 'the_bootstrap_comments_list', 1 );
+add_action( 'comment_form_before', 'cabarave_comments_list', 0 );
+add_action( 'comment_form_comments_closed', 'cabarave_comments_list', 1 );
 
 
 /**
@@ -537,12 +576,12 @@ add_action( 'comment_form_comments_closed', 'the_bootstrap_comments_list', 1 );
  *
  * @return	void
  */
-function the_bootstrap_comments_closed() {
+function cabarave_comments_closed() {
 	if ( ! is_page() AND post_type_supports( get_post_type(), 'comments' ) ) : ?>
 		<p class="nocomments"><?php _e( 'Comments are closed.', 'cabarave' ); ?></p>
 	<?php endif;
 }
-add_action( 'comment_form_comments_closed', 'the_bootstrap_comments_closed' );
+add_action( 'comment_form_comments_closed', 'cabarave_comments_closed' );
 
 
 /**
@@ -555,7 +594,7 @@ add_action( 'comment_form_comments_closed', 'the_bootstrap_comments_closed' );
  *
  * @return	array
  */
-function the_bootstrap_comment_form_defaults( $defaults ) {
+function cabarave_comment_form_defaults( $defaults ) {
 	return wp_parse_args( array(
 		'comment_field'			=>	'<div class="comment-form-comment control-group"><label class="control-label" for="comment">' . _x( 'Comment', 'noun', 'cabarave' ) . '</label><div class="controls"><textarea class="span7" id="comment" name="comment" rows="8" aria-required="true"></textarea></div></div>',
 		'comment_notes_before'	=>	'',
@@ -567,15 +606,15 @@ function the_bootstrap_comment_form_defaults( $defaults ) {
 		'logged_in_as'			=>	'<div class="logged-in-as control-group controls">' . sprintf( __( 'Logged in as <a href="%1$s">%2$s</a>. <a href="%3$s" title="Log out of this account">Log out?</a>', 'cabarave' ), admin_url( 'profile.php' ), wp_get_current_user()->display_name, wp_logout_url( apply_filters( 'the_permalink', get_permalink( get_the_ID() ) ) ) ) . '</div>',
 	), $defaults );
 }
-add_filter( 'comment_form_defaults', 'the_bootstrap_comment_form_defaults' );
+add_filter( 'comment_form_defaults', 'cabarave_comment_form_defaults' );
 
 
-if ( ! function_exists( 'the_bootstrap_comment' ) ) :
+if ( ! function_exists( 'cabarave_comment' ) ) :
 /**
  * Template for comments and pingbacks.
  *
  * To override this walker in a child theme without modifying the comments template
- * simply create your own the_bootstrap_comment(), and that function will be used instead.
+ * simply create your own cabarave_comment(), and that function will be used instead.
  *
  * Used as a callback by wp_list_comments() for displaying the comments.
  *
@@ -588,7 +627,7 @@ if ( ! function_exists( 'the_bootstrap_comment' ) ) :
  *
  * @return	void
  */
-function the_bootstrap_comment( $comment, $args, $depth ) {
+function cabarave_comment( $comment, $args, $depth ) {
 	$GLOBALS['comment'] = $comment;
 	if ( 'pingback' == $comment->comment_type OR 'trackback' == $comment->comment_type ) : ?>
 	
@@ -642,7 +681,7 @@ function the_bootstrap_comment( $comment, $args, $depth ) {
 			
 	<?php endif; // comment_type
 }
-endif; // ends check for the_bootstrap_comment()
+endif; // ends check for cabarave_comment()
 
 
 /**
@@ -656,10 +695,10 @@ endif; // ends check for the_bootstrap_comment()
  *
  * @return	string
  */
-function the_bootstrap_comment_form_top() {
+function cabarave_comment_form_top() {
 	echo '<div class="form-horizontal">';
 }
-add_action( 'comment_form_top', 'the_bootstrap_comment_form_top' );
+add_action( 'comment_form_top', 'cabarave_comment_form_top' );
 
 
 /**
@@ -673,10 +712,10 @@ add_action( 'comment_form_top', 'the_bootstrap_comment_form_top' );
  *
  * @return	string
  */
-function the_bootstrap_comment_form() {
+function cabarave_comment_form() {
 	echo '</div></div>';
 }
-add_action( 'comment_form', 'the_bootstrap_comment_form' );
+add_action( 'comment_form', 'cabarave_comment_form' );
 
 
 /**
@@ -689,7 +728,7 @@ add_action( 'comment_form', 'the_bootstrap_comment_form' );
  *
  * @return	string
  */
-function the_bootstrap_comment_form_field_author( $html ) {
+function cabarave_comment_form_field_author( $html ) {
 	$commenter	=	wp_get_current_commenter();
 	$req		=	get_option( 'require_name_email' );
 	$aria_req	=	( $req ? " aria-required='true'" : '' );
@@ -702,7 +741,7 @@ function the_bootstrap_comment_form_field_author( $html ) {
 				</div>
 			</div>';
 }
-add_filter( 'comment_form_field_author', 'the_bootstrap_comment_form_field_author');
+add_filter( 'comment_form_field_author', 'cabarave_comment_form_field_author');
 
 
 /**
@@ -715,7 +754,7 @@ add_filter( 'comment_form_field_author', 'the_bootstrap_comment_form_field_autho
  *
  * @return	string
  */
-function the_bootstrap_comment_form_field_email( $html ) {
+function cabarave_comment_form_field_email( $html ) {
 	$commenter	=	wp_get_current_commenter();
 	$req		=	get_option( 'require_name_email' );
 	$aria_req	=	( $req ? " aria-required='true'" : '' );
@@ -728,7 +767,7 @@ function the_bootstrap_comment_form_field_email( $html ) {
 				</div>
 			</div>';
 }
-add_filter( 'comment_form_field_email', 'the_bootstrap_comment_form_field_email');
+add_filter( 'comment_form_field_email', 'cabarave_comment_form_field_email');
 
 
 /**
@@ -741,7 +780,7 @@ add_filter( 'comment_form_field_email', 'the_bootstrap_comment_form_field_email'
  *
  * @return	string
  */
-function the_bootstrap_comment_form_field_url( $html ) {
+function cabarave_comment_form_field_url( $html ) {
 	$commenter	=	wp_get_current_commenter();
 	
 	return	'<div class="comment-form-url control-group">
@@ -751,7 +790,7 @@ function the_bootstrap_comment_form_field_url( $html ) {
 				</div>
 			</div>';
 }
-add_filter( 'comment_form_field_url', 'the_bootstrap_comment_form_field_url');
+add_filter( 'comment_form_field_url', 'cabarave_comment_form_field_url');
 
 
 /**
@@ -770,10 +809,10 @@ add_filter( 'comment_form_field_url', 'the_bootstrap_comment_form_field_url');
  *
  * @return	string
  */
-function the_bootstrap_get_attachment_link( $link, $id, $size, $permalink, $icon, $text ) {
+function cabarave_get_attachment_link( $link, $id, $size, $permalink, $icon, $text ) {
 	return ( ! $text ) ? str_replace( '<a ', '<a class="thumbnail" ', $link ) : $link;
 }
-add_filter( 'wp_get_attachment_link', 'the_bootstrap_get_attachment_link', 10, 6 );
+add_filter( 'wp_get_attachment_link', 'cabarave_get_attachment_link', 10, 6 );
 
 
 /**
@@ -786,7 +825,7 @@ add_filter( 'wp_get_attachment_link', 'the_bootstrap_get_attachment_link', 10, 6
  *
  * @return	array
  */
-function the_bootstrap_post_classes( $classes ) {
+function cabarave_post_classes( $classes ) {
 
 	if ( is_sticky() AND is_home() ) {
 		$classes[] = 'hero-unit';
@@ -794,7 +833,7 @@ function the_bootstrap_post_classes( $classes ) {
 	
 	return $classes;
 }
-add_filter( 'post_class', 'the_bootstrap_post_classes' );
+add_filter( 'post_class', 'cabarave_post_classes' );
 
 
 /**
@@ -808,7 +847,7 @@ add_filter( 'post_class', 'the_bootstrap_post_classes' );
  *
  * @return	string
  */
-function the_bootstrap_post_gallery( $content, $attr ) {
+function cabarave_post_gallery( $content, $attr ) {
 	global $instance, $post;
 	$instance++;
 
@@ -926,7 +965,7 @@ function the_bootstrap_post_gallery( $content, $attr ) {
 	
 	return $output;
 }
-add_filter( 'post_gallery', 'the_bootstrap_post_gallery', 10, 2 );
+add_filter( 'post_gallery', 'cabarave_post_gallery', 10, 2 );
 
 
 /**
@@ -941,7 +980,7 @@ add_filter( 'post_gallery', 'the_bootstrap_post_gallery', 10, 2 );
  *
  * @return	string
  */
-function the_bootstrap_img_caption_shortcode( $empty, $attr, $content ) {
+function cabarave_img_caption_shortcode( $empty, $attr, $content ) {
 
 	extract( shortcode_atts( array(
 		'id'		=>	'',
@@ -963,7 +1002,7 @@ function the_bootstrap_img_caption_shortcode( $empty, $attr, $content ) {
 				<figcaption class="wp-caption-text">' . $caption . '</figcaption>
 			</figure>';
 }
-add_filter( 'img_caption_shortcode', 'the_bootstrap_img_caption_shortcode', 10, 3 );
+add_filter( 'img_caption_shortcode', 'cabarave_img_caption_shortcode', 10, 3 );
 
 
 /**
@@ -976,10 +1015,10 @@ add_filter( 'img_caption_shortcode', 'the_bootstrap_img_caption_shortcode', 10, 
  *
  * @return	string	Cabarave password form
  */
-function the_bootstrap_the_password_form( $form ) {
+function cabarave_the_password_form( $form ) {
 	return '<form class="post-password-form form-horizontal" action="' . home_url( 'wp-pass.php' ) . '" method="post"><legend>'. __( 'This post is password protected. To view it please enter your password below:', 'cabarave' ) . '</legend><div class="control-group"><label class="control-label" for="post-password-' . get_the_ID() . '">' . __( 'Password:', 'cabarave' ) .'</label><div class="controls"><input name="post_password" id="post-password-' . get_the_ID() . '" type="password" size="20" /></div></div><div class="form-actions"><button type="submit" class="post-password-submit submit btn btn-primary">' . __( 'Submit', 'cabarave' ) . '</button></div></form>';
 }
-add_filter( 'the_password_form', 'the_bootstrap_the_password_form' );
+add_filter( 'the_password_form', 'cabarave_the_password_form' );
 
 
 /**
@@ -992,7 +1031,7 @@ add_filter( 'the_password_form', 'the_bootstrap_the_password_form' );
  *
  * @return	array
  */
-function the_bootstrap_widget_categories_dropdown_args( $args ) {
+function cabarave_widget_categories_dropdown_args( $args ) {
 	if ( is_404() ) {
 		$args	=	wp_parse_args( $args, array(
 			'orderby'		=>	'count',
@@ -1004,7 +1043,7 @@ function the_bootstrap_widget_categories_dropdown_args( $args ) {
 	}
 	return $args;
 }
-add_filter( 'widget_categories_dropdown_args', 'the_bootstrap_widget_categories_dropdown_args' );
+add_filter( 'widget_categories_dropdown_args', 'cabarave_widget_categories_dropdown_args' );
 
 
 /**
@@ -1024,7 +1063,7 @@ add_filter( 'widget_categories_dropdown_args', 'the_bootstrap_widget_categories_
  * 
  * @return	string	Image HTML
  */
-function the_bootstrap_image_send_to_editor( $html, $id, $caption, $title, $align, $url, $size, $alt ) {
+function cabarave_image_send_to_editor( $html, $id, $caption, $title, $align, $url, $size, $alt ) {
 	if ( $url ) {
 		$html = str_replace( '<a ', '<a class="thumbnail" ', $html );
 	} else {
@@ -1033,7 +1072,7 @@ function the_bootstrap_image_send_to_editor( $html, $id, $caption, $title, $alig
 
 	return $html;
 }
-add_filter( 'image_send_to_editor', 'the_bootstrap_image_send_to_editor', 10, 8 );
+add_filter( 'image_send_to_editor', 'cabarave_image_send_to_editor', 10, 8 );
 
 
 /**
@@ -1045,13 +1084,13 @@ add_filter( 'image_send_to_editor', 'the_bootstrap_image_send_to_editor', 10, 8 
  * 
  * @return	void
  */
-function the_bootstrap_content_width() {
+function cabarave_content_width() {
 	if ( is_attachment() ) {
 		global $content_width;
 		$content_width = 940;
 	}
 }
-add_action( 'template_redirect', 'the_bootstrap_content_width' );
+add_action( 'template_redirect', 'cabarave_content_width' );
 
 
 /**
@@ -1063,7 +1102,7 @@ add_action( 'template_redirect', 'the_bootstrap_content_width' );
  *
  * @return	string	Cabarave version
  */
-function _the_bootstrap_version() {
+function _cabarave_version() {
 	
 	if ( function_exists( 'wp_get_theme' ) ) {
 		$theme_version	=	wp_get_theme()->get( 'Version' );

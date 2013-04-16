@@ -7,7 +7,7 @@
  */
 
 
-class The_Bootstrap_Gallery_Widget extends WP_Widget {
+class cabarave_Gallery_Widget extends WP_Widget {
 
 
 	///////////////////////////////////////////////////////////////////////////
@@ -21,7 +21,7 @@ class The_Bootstrap_Gallery_Widget extends WP_Widget {
 	 * @since	1.1.0 - 08.03.2012
 	 * @access	public
 	 *
-	 * @return	The_Bootstrap_Gallery_Widget
+	 * @return	cabarave_Gallery_Widget
 	 */
 	public function __construct() {
 		
@@ -153,7 +153,7 @@ class The_Bootstrap_Gallery_Widget extends WP_Widget {
 		</p>
 		<?php
 	}
-} // End of class The_Bootstrap_Gallery_Widget
+} // End of class cabarave_Gallery_Widget
 
 
 

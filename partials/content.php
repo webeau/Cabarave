@@ -26,7 +26,7 @@ tha_entry_before(); ?>
 		
 		if ( 'post' == get_post_type() ) : ?>
 		<div class="entry-meta">
-			<?php the_bootstrap_posted_on(); ?>
+			<?php cabarave_posted_on(); ?>
 		</div><!-- .entry-meta -->
 		<?php endif; ?>
 	</header><!-- .entry-header -->
@@ -43,7 +43,7 @@ tha_entry_before(); ?>
 		</a>
 		<?php endif;
 		the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'cabarave' ) );
-		the_bootstrap_link_pages(); ?>
+		cabarave_link_pages(); ?>
 	</div><!-- .entry-content -->
 	<?php endif; ?>
 

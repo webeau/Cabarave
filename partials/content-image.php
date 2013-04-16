@@ -18,11 +18,11 @@ tha_entry_before(); ?>
 	<div class="entry-content clearfix">
 		<?php
 		the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'cabarave' ) );
-		the_bootstrap_link_pages(); ?>
+		cabarave_link_pages(); ?>
 	</div><!-- .entry-content -->
 
 	<footer class="entry-footer">
-		<?php the_bootstrap_posted_on(); ?>
+		<?php cabarave_posted_on(); ?>
 	</footer><!-- .entry-footer -->
 	
 	<?php tha_entry_bottom(); ?>

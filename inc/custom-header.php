@@ -17,23 +17,23 @@
  * 
  * @return	void
  */
-function the_bootstrap_custom_header_setup() {
-	$args = apply_filters( 'the_bootstrap_custom_header_args',  array(
+function cabarave_custom_header_setup() {
+	$args = apply_filters( 'cabarave_custom_header_args',  array(
 		'default-image'				=>	'',
 
 		// The height and width of your custom header.
-		// Add a filter to the_bootstrap_header_image_width and the_bootstrap_header_image_height to change these values.
-		'width'						=>	apply_filters( 'the_bootstrap_header_image_width', 1170 ),
-		'height'					=>	apply_filters( 'the_bootstrap_header_image_height', 250 ),
+		// Add a filter to cabarave_header_image_width and cabarave_header_image_height to change these values.
+		'width'						=>	apply_filters( 'cabarave_header_image_width', 1170 ),
+		'height'					=>	apply_filters( 'cabarave_header_image_height', 250 ),
 		'flex-height'				=>	true,
 		
 		// The default header text color
 		'default-text-color'		=>	'333333',
 			
 		// Add a way for the custom header to be styled in the admin panel that controls custom headers
-		'wp-head-callback'			=>	'the_bootstrap_header_style',
-		'admin-head-callback'		=>	'the_bootstrap_admin_header_style',
-		'admin-preview-callback'	=>	'the_bootstrap_admin_header_image',
+		'wp-head-callback'			=>	'cabarave_header_style',
+		'admin-head-callback'		=>	'cabarave_admin_header_style',
+		'admin-preview-callback'	=>	'cabarave_admin_header_image',
 	) );
 	
 	add_theme_support( 'custom-header', $args );
@@ -47,10 +47,10 @@ function the_bootstrap_custom_header_setup() {
 		add_custom_image_header( $args['wp-head-callback'], $args['admin-head-callback'], $args['admin-preview-callback'] );
 	}
 }
-add_action( 'after_setup_theme', 'the_bootstrap_custom_header_setup', 11 );
+add_action( 'after_setup_theme', 'cabarave_custom_header_setup', 11 );
 
 
-if ( ! function_exists( 'the_bootstrap_header_style' ) ) :
+if ( ! function_exists( 'cabarave_header_style' ) ) :
 /**
  * Styles the header image and text displayed on the blog
  *
@@ -59,7 +59,7 @@ if ( ! function_exists( 'the_bootstrap_header_style' ) ) :
  * 
  * @return	void
  */
-function the_bootstrap_header_style() {
+function cabarave_header_style() {
 
 	// If no custom options for text are set, let's bail
 	// get_header_textcolor() options: get_theme_support( 'custom-header', 'default-text-color' ) is default, hide text (returns 'blank') or any hex value
@@ -81,10 +81,10 @@ function the_bootstrap_header_style() {
 	<?php
 	endif;
 }
-endif; // the_bootstrap_header_style
+endif; // cabarave_header_style
 
 
-if ( ! function_exists( 'the_bootstrap_admin_header_style' ) ) :
+if ( ! function_exists( 'cabarave_admin_header_style' ) ) :
 /**
  * Styles the header image displayed on the Appearance > Header admin panel.
  *
@@ -93,7 +93,7 @@ if ( ! function_exists( 'the_bootstrap_admin_header_style' ) ) :
  * 
  * @return	void
  */
-function the_bootstrap_admin_header_style() {
+function cabarave_admin_header_style() {
 ?>
 	<style type="text/css">
 	.appearance_page_custom-header #headimg {
@@ -126,10 +126,10 @@ function the_bootstrap_admin_header_style() {
 	</style>
 <?php
 }
-endif; // the_bootstrap_admin_header_style
+endif; // cabarave_admin_header_style
 
 
-if ( ! function_exists( 'the_bootstrap_admin_header_image' ) ) :
+if ( ! function_exists( 'cabarave_admin_header_image' ) ) :
 /**
  * Custom header image markup displayed on the Appearance > Header admin panel.
  *
@@ -138,7 +138,7 @@ if ( ! function_exists( 'the_bootstrap_admin_header_image' ) ) :
  * 
  * @return	void
  */
-function the_bootstrap_admin_header_image() { ?>
+function cabarave_admin_header_image() { ?>
 	<div id="headimg">
 		<?php $style = ( 'blank' == get_header_textcolor() OR ! get_header_textcolor() ) ? ' style="display:none;"' : ''; ?>
 		
@@ -149,7 +149,7 @@ function the_bootstrap_admin_header_image() { ?>
 		<?php endif; ?>
 	</div>
 <?php }
-endif; // the_bootstrap_admin_header_image
+endif; // cabarave_admin_header_image
 
 
 if ( ! function_exists( 'get_custom_header' ) ) :

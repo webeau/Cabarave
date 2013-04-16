@@ -20,7 +20,7 @@ tha_entry_before(); ?>
 	<div class="entry-content clearfix">
 		<?php
 		the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'cabarave' ) );
-		the_bootstrap_link_pages(); ?>
+		cabarave_link_pages(); ?>
 	</div><!-- .entry-content -->
 	<?php edit_post_link( __( 'Edit', 'cabarave' ), '<footer class="entry-meta"><span class="edit-link label">', '</span></footer>' );
 	

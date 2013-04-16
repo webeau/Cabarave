@@ -122,7 +122,7 @@ THIS IS A MAJOR RELEASE, BREAKING BACKWARD COMPATIBILITY IN SOME PLACES
 = 1.5.0 =
 * Added missing Theme Option to Theme Customizer
 * Add support (style) for Jetpack subscription checkboxes
-* Introduced The_Bootstrap_Nav_Walker to avoid JavaScript handling of navbar markup
+* Introduced cabarave_Nav_Walker to avoid JavaScript handling of navbar markup
 * Fixed a bug where images on attachment pages were not displayed in IE8
 * Updated German language file
 

@@ -12,7 +12,7 @@ tha_sidebars_before(); ?>
 	tha_sidebar_top();
 	
 	if ( ! dynamic_sidebar( 'image' ) ) {
-		the_widget( 'The_Bootstrap_Image_Meta_Widget', array(), array(
+		the_widget( 'cabarave_Image_Meta_Widget', array(), array(
 			'before_widget'	=>	'<aside id="cabarave-image-meta" class="widget well cabarave-image-meta">',
 			'after_widget'	=>	'</aside>',
 			'before_title'	=>	'<h3 class="widget-title">',

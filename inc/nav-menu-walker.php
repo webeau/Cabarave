@@ -7,7 +7,7 @@
  */
 
 
-class The_Bootstrap_Nav_Walker extends Walker_Nav_Menu {
+class cabarave_Nav_Walker extends Walker_Nav_Menu {
 
 	/**
 	 * @see Walker_Nav_Menu::start_lvl()
@@ -114,13 +114,13 @@ class The_Bootstrap_Nav_Walker extends Walker_Nav_Menu {
  *
  * @return	array
  */
-function the_bootstrap_nav_menu_css_class( $classes ) {
+function cabarave_nav_menu_css_class( $classes ) {
 	if ( in_array('current-menu-item', $classes ) OR in_array( 'current-menu-ancestor', $classes ) )
 		$classes[]	=	'active';
 
 	return $classes;
 }
-add_filter( 'nav_menu_css_class', 'the_bootstrap_nav_menu_css_class' );
+add_filter( 'nav_menu_css_class', 'cabarave_nav_menu_css_class' );
 
 
 /* End of file nav-menu-walker.php */

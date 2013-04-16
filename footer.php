@@ -16,8 +16,8 @@
 							'theme_location'	=>	'footer-menu',
 							'menu_class'		=>	'credits nav nav-pills pull-left',
 							'depth'				=>	3,
-							'fallback_cb'		=>	'the_bootstrap_credits',
-							'walker'			=>	new The_Bootstrap_Nav_Walker,
+							'fallback_cb'		=>	'cabarave_credits',
+							'walker'			=>	new cabarave_Nav_Walker,
 						) );
 						?>
 						<div id="site-generator"<?php echo has_nav_menu('footer-menu') ? ' class="footer-nav-menu"' : ''; ?>>
@@ -31,7 +31,6 @@
 				</footer><!-- #colophon -->
 				<?php tha_footer_after(); ?>
 			</div><!-- #page -->
-		</div><!-- .container -->
 	<!-- <?php printf( __( '%d queries. %s seconds.', 'cabarave' ), get_num_queries(), timer_stop(0, 3) ); ?> -->
 	<?php wp_footer(); ?>
 	</body>

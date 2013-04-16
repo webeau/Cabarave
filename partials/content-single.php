@@ -15,13 +15,13 @@ tha_entry_before(); ?>
 	
 	<header class="page-header">
 		<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
-		<div class="entry-meta"><?php the_bootstrap_posted_on(); ?></div><!-- .entry-meta -->
+		<div class="entry-meta"><?php cabarave_posted_on(); ?></div><!-- .entry-meta -->
 	</header><!-- .entry-header -->
 
 	<div class="entry-content clearfix">
 		<?php
 		the_content();
-		the_bootstrap_link_pages(); ?>
+		cabarave_link_pages(); ?>
 	</div><!-- .entry-content -->
 
 	<footer class="entry-footer">
@@ -44,7 +44,7 @@ if ( get_the_author_meta( 'description' ) AND is_multi_author() ) : // If a user
 <aside id="author-info" class="row">
 	<h2 class="span8"><?php printf( __( 'About %s', 'cabarave' ), get_the_author() ); ?></h2>
 	<div id="author-avatar" class="span1">
-		<?php echo get_avatar( get_the_author_meta( 'user_email' ), apply_filters( 'the_bootstrap_author_bio_avatar_size', 70 ) ); ?>
+		<?php echo get_avatar( get_the_author_meta( 'user_email' ), apply_filters( 'cabarave_author_bio_avatar_size', 70 ) ); ?>
 	</div><!-- #author-avatar -->
 	<div id="author-description" class="span7">
 		<?php the_author_meta( 'description' ); ?>

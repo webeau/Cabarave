@@ -52,7 +52,7 @@ the_post();
 			<span class="nav-links pull-right">
 				<?php
 				edit_post_link( __( 'Edit', 'cabarave' ), ' <span class="edit-link label">', '</span><span class="sep">&nbsp;</span>' );
-				the_bootstrap_comments_link( __( 'Leave a comment', 'cabarave' ) );
+				cabarave_comments_link( __( 'Leave a comment', 'cabarave' ) );
 				if ( isset($attachments[$k-1]) )
 					echo ' &mdash; <a href="' . get_permalink( $attachments[$k-1]->ID ) . '">' . __( '&laquo; Previous Photo', 'cabarave' ) . '</a>';
 				if ( isset($attachments[$k+1]) )

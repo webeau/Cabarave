@@ -10,7 +10,7 @@
  */
 
 
-if ( ! function_exists( 'the_bootstrap_content_nav' ) ) :
+if ( ! function_exists( 'cabarave_content_nav' ) ) :
 /**
  * Display navigation to next/previous pages when applicable
  *
@@ -25,7 +25,7 @@ if ( ! function_exists( 'the_bootstrap_content_nav' ) ) :
  *
  * @return	void
  */
-function the_bootstrap_content_nav() {
+function cabarave_content_nav() {
 	global $wp_query, $wp_rewrite;
 
 	$paged			=	( get_query_var( 'paged' ) ) ? intval( get_query_var( 'paged' ) ) : 1;
@@ -60,7 +60,7 @@ function the_bootstrap_content_nav() {
 endif;
 
 
-if ( ! function_exists( 'the_bootstrap_comment_nav' ) ) :
+if ( ! function_exists( 'cabarave_comment_nav' ) ) :
 /**
  * Display navigation to next/previous comments pages when applicable
  *
@@ -69,7 +69,7 @@ if ( ! function_exists( 'the_bootstrap_comment_nav' ) ) :
  *
  * @return	void
  */
-function the_bootstrap_comment_nav() {
+function cabarave_comment_nav() {
 	if ( get_comment_pages_count() > 1 AND get_option( 'page_comments' ) ) : // are there comments to navigate through ?>
 	<nav class="comment-nav well">
 		<h1 class="assistive-text"><?php _e( 'Comment navigation', 'cabarave' ); ?></h1>
@@ -81,7 +81,7 @@ function the_bootstrap_comment_nav() {
 endif;
 
 
-if ( ! function_exists( 'the_bootstrap_posted_on' ) ) :
+if ( ! function_exists( 'cabarave_posted_on' ) ) :
 /**
  * Prints HTML with meta information for the current post-date/time and author,
 * comment and edit link
@@ -91,7 +91,7 @@ if ( ! function_exists( 'the_bootstrap_posted_on' ) ) :
 *
 * @return	void
 */
-function the_bootstrap_posted_on() {
+function cabarave_posted_on() {
 	printf( __( '<span class="sep">Posted on </span><a href="%1$s" title="%2$s" rel="bookmark"><time class="entry-date" datetime="%3$s" pubdate>%4$s</time></a><span class="by-author"> <span class="sep"> by </span> <span class="author vcard"><a class="url fn n" href="%5$s" title="%6$s" rel="author">%7$s</a></span></span>', 'cabarave' ),
 			esc_url( get_permalink() ),
 			esc_attr( get_the_time() ),
@@ -113,7 +113,7 @@ function the_bootstrap_posted_on() {
 endif;
 
 
-if ( ! function_exists( 'the_bootstrap_link_pages' ) ) :
+if ( ! function_exists( 'cabarave_link_pages' ) ) :
 /**
  * Displays page links for paginated posts
  *
@@ -128,7 +128,7 @@ if ( ! function_exists( 'the_bootstrap_link_pages' ) ) :
  *
  * @return	string
  */
-function the_bootstrap_link_pages( $args = array() ) {
+function cabarave_link_pages( $args = array() ) {
 	wp_link_pages( array( 'echo' => 0 ));
 	$defaults = array(
 		'next_or_number'	=> 'number',
@@ -139,7 +139,7 @@ function the_bootstrap_link_pages( $args = array() ) {
 	);
 
 	$r = wp_parse_args( $args, $defaults );
-	$r = apply_filters( 'the_bootstrap_link_pages_args', $r );
+	$r = apply_filters( 'cabarave_link_pages_args', $r );
 	extract( $r, EXTR_SKIP );
 
 	global $page, $numpages, $multipage, $more, $pagenow;
@@ -183,7 +183,7 @@ function the_bootstrap_link_pages( $args = array() ) {
 endif;
 
 
-if ( ! function_exists( 'the_bootstrap_navbar_searchform' ) ) :
+if ( ! function_exists( 'cabarave_navbar_searchform' ) ) :
 /**
  * Returns or echoes searchform mark up, specifically for the navbar.
 *
@@ -194,7 +194,7 @@ if ( ! function_exists( 'the_bootstrap_navbar_searchform' ) ) :
 *
 * @return	void
 */
-function the_bootstrap_navbar_searchform( $echo = true ) {
+function cabarave_navbar_searchform( $echo = true ) {
 	$searchform = '	<form id="searchform" class="navbar-search pull-right" method="get" action="' . esc_url( home_url( '/' ) ) . '">
 						<label for="s" class="assistive-text hidden">' . __( 'Search', 'cabarave' ) . '</label>
 						<input type="search" class="search-query" name="s" id="s" placeholder="' . esc_attr__( 'Search', 'cabarave' ) . '" />
@@ -208,7 +208,7 @@ function the_bootstrap_navbar_searchform( $echo = true ) {
 endif;
 
 
-if ( ! function_exists( 'the_bootstrap_navbar_class' ) ) :
+if ( ! function_exists( 'cabarave_navbar_class' ) ) :
 /**
  * Adds Cabarave navbar classes
  *
@@ -217,23 +217,23 @@ if ( ! function_exists( 'the_bootstrap_navbar_class' ) ) :
  *
  * @return	void
  */
-function the_bootstrap_navbar_class() {
+function cabarave_navbar_class() {
 	$classes	=	array( 'navbar' );
 
-	if ( 'static' != the_bootstrap_options()->navbar_position )
-		$classes[]	=	the_bootstrap_options()->navbar_position;
+	if ( 'static' != cabarave_options()->navbar_position )
+		$classes[]	=	cabarave_options()->navbar_position;
 	
-	if ( the_bootstrap_options()->navbar_inverse )
+	if ( cabarave_options()->navbar_inverse )
 		$classes[]	=	'navbar-inverse';
 	
-	apply_filters( 'the_bootstrap_navbar_classes', $classes );
+	apply_filters( 'cabarave_navbar_classes', $classes );
 
 	echo 'class="' . join( ' ', $classes ) . '"';
 }
 endif;
 
 
-if ( ! function_exists( 'the_bootstrap_comments_link' ) ) :
+if ( ! function_exists( 'cabarave_comments_link' ) ) :
 /**
  * Displays the link to the comments popup window for the current post ID.
  *
@@ -250,7 +250,7 @@ if ( ! function_exists( 'the_bootstrap_comments_link' ) ) :
  * 
  * @return	void
  */
-function the_bootstrap_comments_link( $zero = false, $one = false, $more = false, $css_class = '', $none = false ) {
+function cabarave_comments_link( $zero = false, $one = false, $more = false, $css_class = '', $none = false ) {
 	$number = get_comments_number();
 	$class  = empty( $css_class ) ? '' : ' class="' . esc_attr( $css_class ) . '"';
 	
@@ -282,7 +282,7 @@ function the_bootstrap_comments_link( $zero = false, $one = false, $more = false
 		apply_filters( 'comments_number', $comments_number, $number )
 	);
 	
-	echo apply_filters( 'the_bootstrap_comments_link', $link, $zero, $one, $more, $css_class, $none );
+	echo apply_filters( 'cabarave_comments_link', $link, $zero, $one, $more, $css_class, $none );
 }
 endif;
 

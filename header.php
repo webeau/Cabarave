@@ -3,7 +3,7 @@
  *
  * Displays all of the <head> section and everything up till </header>
  *
- * @author		Konstantin Obenland
+ * @author		Bret Holstein, Konstantin Obenland
  * @package		Cabarave
  * @since		1.0 - 05.02.2012
  */
@@ -24,8 +24,7 @@
 	</head>
 	
 	<body <?php body_class(); ?>>
-		<div class="container">
-			<div id="page" class="hfeed row">
+			<div id="page" class="hfeed">
 				<?php tha_header_before(); ?>
 				<header id="branding" role="banner" class="span12">
 					<?php tha_header_top();
@@ -36,7 +35,7 @@
 						'menu_class'		=>	'nav nav-pills pull-right',
 						'depth'				=>	3,
 						'fallback_cb'		=>	false,
-						'walker'			=>	new The_Bootstrap_Nav_Walker,
+						'walker'			=>	new cabarave_Nav_Walker,
 					) ); ?>
 					<hgroup>
 						<h1 id="site-title">
@@ -57,8 +56,8 @@
 						<h3 class="assistive-text"><?php _e( 'Main menu', 'cabarave' ); ?></h3>
 						<div class="skip-link"><a class="assistive-text" href="#content" title="<?php esc_attr_e( 'Skip to primary content', 'cabarave' ); ?>"><?php _e( 'Skip to primary content', 'cabarave' ); ?></a></div>
 						<div class="skip-link"><a class="assistive-text" href="#secondary" title="<?php esc_attr_e( 'Skip to secondary content', 'cabarave' ); ?>"><?php _e( 'Skip to secondary content', 'cabarave' ); ?></a></div>
-						<?php if ( has_nav_menu( 'primary' ) OR the_bootstrap_options()->navbar_site_name OR the_bootstrap_options()->navbar_searchform ) : ?>
-						<div <?php the_bootstrap_navbar_class(); ?>>
+						<?php if ( has_nav_menu( 'primary' ) OR cabarave_options()->navbar_site_name OR cabarave_options()->navbar_searchform ) : ?>
+						<div <?php cabarave_navbar_class(); ?>>
 							<div class="navbar-inner">
 								<div class="container">
 									<!-- .btn-navbar is used as the toggle for collapsed navbar content -->
@@ -67,19 +66,35 @@
 										<span class="icon-bar"></span>
 										<span class="icon-bar"></span>
 									</a>
-									<?php if ( the_bootstrap_options()->navbar_site_name ) : ?>
+									<?php if ( cabarave_options()->navbar_site_name ) { ?>
 									<span class="brand"><?php bloginfo( 'name' ); ?></span>
-									<?php endif;?>
+									<?php } elseif ( get_theme_mod( 'logo_image_position', 'in-nav' ) == 'in-nav' ) {
+                                						skematik_logo();
+									} ?>
+									<div class="pull-right"><?php
+										if ( the_bootstrap_options()->navbar_searchform ) {
+											the_bootstrap_navbar_searchform();
+										}
+
+										if ( get_theme_mod( 'navbar_cart', 1 ) == 1 ) {
+											skematik_cart_dropdown();
+										}
+
+										if ( get_theme_mod( 'navbar_account', 1 ) == 1 ) {
+											skematik_account_dropdown();
+										}
+										?>
+									</div>
 									<div class="nav-collapse">
 										<?php wp_nav_menu( array(
 											'theme_location'	=>	'primary',
 											'menu_class'		=>	'nav',
 											'depth'				=>	3,
 											'fallback_cb'		=>	false,
-											'walker'			=>	new The_Bootstrap_Nav_Walker,
+											'walker'			=>	new cabarave_Nav_Walker,
 										) ); 
-										if ( the_bootstrap_options()->navbar_searchform ) {
-											the_bootstrap_navbar_searchform();
+										if ( cabarave_options()->navbar_searchform ) {
+											cabarave_navbar_searchform();
 										} ?>
 								    </div>
 								</div>
@@ -87,10 +102,7 @@
 						</div>
 						<?php endif; ?>
 					</nav><!-- #access -->
-					<?php if ( function_exists( 'yoast_breadcrumb' ) ) {
-						yoast_breadcrumb( '<nav id="breadcrumb" class="breadcrumb">', '</nav>' );
-					}
-					tha_header_bottom(); ?>
+					<?php tha_header_bottom(); ?>
 				</header><!-- #branding --><?php
 				tha_header_after();
 				
