@@ -1,0 +1,573 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: Mischa Gorinskat <m.gorinskat@gmail.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2\n"
+"X-Textdomain-Support: yes\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#@ cabarave
+#: 404.php:19
+msgid "This is somewhat embarrassing, isn&rsquo;t it?"
+msgstr "De opgevraagde pagina bestaat niet."
+
+#@ cabarave
+#: 404.php:23
+msgid "It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching, or one of the links below, can help."
+msgstr "Er zijn geen resultaten gevonden. Probeer te zoekfunctie nogmaals."
+
+#@ cabarave
+#: 404.php:30
+msgid "Most Used Categories"
+msgstr "Veel gebruikte categori&euml;n"
+
+#@ cabarave
+#. translators: %1$s: smilie
+#: 404.php:44
+#, php-format
+msgid "Try looking in the monthly archives. %1$s"
+msgstr "Probeer te kijken in het maandelijkse archief. %1$s"
+
+#@ cabarave
+#: archive.php:28
+#, php-format
+msgid "Daily Archives: %s"
+msgstr "Archief voor de tag %s"
+
+#@ cabarave
+#: archive.php:30
+#, php-format
+msgid "Monthly Archives: %s"
+msgstr "Archief voor de maand %s"
+
+#@ cabarave
+#: archive.php:32
+#, php-format
+msgid "Yearly Archives: %s"
+msgstr "Archief voor het jaar %s"
+
+#@ cabarave
+#: archive.php:34
+msgid "Blog Archives"
+msgstr "Blog-archief"
+
+#@ cabarave
+#: author.php:21
+#, php-format
+msgid "Author Archives: %s"
+msgstr "Archief van de auteur: %s"
+
+#@ cabarave
+#: author.php:29
+#: partials/content-single.php:39
+#, php-format
+msgid "About %s"
+msgstr "Over %s"
+
+#@ cabarave
+#: category.php:21
+#, php-format
+msgid "Category Archives: %s"
+msgstr "Categorie archief: %s"
+
+#@ cabarave
+#: comments.php:20
+msgid "This post is password protected. Enter the password to view any comments."
+msgstr "Dit bericht is beveiligd met een wachtwoord. Voer het wachtwoord in om opmerkingen te lezen."
+
+#@ cabarave
+#: comments.php:31
+#, php-format
+msgid "One thought on &ldquo;%2$s&rdquo;"
+msgid_plural "%1$s thoughts on &ldquo;%2$s&rdquo;"
+msgstr[0] "Een reactie op &ldquo;%2$s&rdquo;"
+msgstr[1] "%1$s reacties op &ldquo;%2$s&rdquo;"
+
+#@ cabarave
+#: comments.php:38
+#: comments.php:50
+msgid "Comment navigation"
+msgstr "Reactie navigatie"
+
+#@ cabarave
+#: comments.php:39
+#: comments.php:51
+msgid "&larr; Newer Comments"
+msgstr "&larr; Nieuwere reacties"
+
+#@ cabarave
+#: comments.php:40
+#: comments.php:52
+msgid "Older Comments &rarr;"
+msgstr "Oudere reacties &larr;"
+
+#@ cabarave
+#: comments.php:60
+msgid "Comments are closed."
+msgstr "Het is niet meer mogelijk om te reageren."
+
+#@ cabarave
+#: comments.php:63
+msgctxt "noun"
+msgid "Comment"
+msgstr "Reactie"
+
+#@ cabarave
+#: comments.php:65
+#, php-format
+msgid "You may use these <abbr title=\"HyperText Markup Language\">HTML</abbr> tags and attributes: %s"
+msgstr "U kunt de volgende <abbr title=\"HyperText Markup Language\">HTML</abbr> tags en attributen gebruiken: %s"
+
+#@ cabarave
+#: comments.php:69
+#, php-format
+msgid "You must be <a href=\"%s\">logged in</a> to post a comment."
+msgstr "U moet <a href=\"%s\">ingelogd</a> zijn, om te kunnen reageren."
+
+#@ cabarave
+#: comments.php:70
+#, php-format
+msgid "Logged in as <a href=\"%1$s\">%2$s</a>. <a href=\"%3$s\" title=\"Log out of this account\">Log out?</a>"
+msgstr "Ingelogd als <a href=\"%1$s\">%2$s</a>. <a href=\"%3$s\" title=\"Uitloggen\">Uitloggen?</a>"
+
+#@ cabarave
+#: footer.php:14
+#, php-format
+msgid "&copy; %1$s <a href=\"%2$s\">%3$s</a>, all rights reserved."
+msgstr "&copy; %1$s <a href=\"%2$s\">%3$s</a>, alle rechten voorbehouden."
+
+#@ cabarave
+#: footer.php:20
+msgid "http://wordpress.org/"
+msgstr "http://wordpress.org/"
+
+#@ cabarave
+#: footer.php:21
+msgid "Semantic Personal Publishing Platform"
+msgstr "Semantisch Persoonlijk Publicatie Platform"
+
+#@ cabarave
+#: footer.php:24
+#, php-format
+msgctxt "WordPress"
+msgid "Proudly powered by %s"
+msgstr "Met trots aangedreven door %s"
+
+#@ cabarave
+#: footer.php:30
+#, php-format
+msgid "%d queries. %s seconds."
+msgstr "%d Aanvragen. %s Secondes."
+
+#@ cabarave
+#: functions.php:52
+msgid "Main Navigation"
+msgstr "Hoofdnavigatie"
+
+#@ cabarave
+#: functions.php:70
+msgid "Main Sidebar"
+msgstr "Hoofd zijbalk"
+
+#@ cabarave
+#: functions.php:79
+msgid "Image Sidebar"
+msgstr "Afbeelding zijbalk"
+
+#@ cabarave
+#: functions.php:244
+#, php-format
+msgid "<span class=\"sep\">Posted on </span><a href=\"%1$s\" title=\"%2$s\" rel=\"bookmark\"><time class=\"entry-date\" datetime=\"%3$s\" pubdate>%4$s</time></a><span class=\"by-author\"> <span class=\"sep\"> by </span> <span class=\"author vcard\"><a class=\"url fn n\" href=\"%5$s\" title=\"%6$s\" rel=\"author\">%7$s</a></span></span>"
+msgstr "<span class=\"sep\">Gepubliceerd op </span><a href=\"%1$s\" title=\"%2$s\" rel=\"bookmark\"><time class=\"entry-date\" datetime=\"%3$s\" pubdate>%4$s</time></a><span class=\"by-author\"> <span class=\"sep\"> door </span> <span class=\"author vcard\"><a class=\"url fn n\" href=\"%5$s\" title=\"%6$s\" rel=\"author\">%7$s</a></span></span>"
+
+#@ cabarave
+#: functions.php:250
+#, php-format
+msgid "View all posts by %s"
+msgstr "Alle berichten van %s bekijken"
+
+#@ cabarave
+#: functions.php:256
+msgid "Reply"
+msgstr "Reageren"
+
+#@ cabarave
+#: functions.php:256
+#: partials/content-quote.php:66
+msgid "<strong>1</strong> Reply"
+msgstr "<strong>1</strong> reactie"
+
+#@ cabarave
+#: functions.php:256
+#: partials/content-quote.php:66
+msgid "<strong>%</strong> Replies"
+msgstr "<strong>%</strong> reacties"
+
+#@ cabarave
+#: functions.php:260
+#: functions.php:456
+#: functions.php:482
+#: image.php:55
+#: partials/content-page.php:22
+msgid "Edit"
+msgstr "Bewerken"
+
+#@ cabarave
+#: functions.php:284
+msgid "Next page"
+msgstr "Volgende pagina"
+
+#@ cabarave
+#: functions.php:285
+msgid "Previous page"
+msgstr "Vorige pagina"
+
+#@ cabarave
+#: functions.php:299
+#: functions.php:313
+msgid "Pages:"
+msgstr "Pagina's:"
+
+#@ cabarave
+#: functions.php:367
+#: partials/content-aside.php:29
+#: partials/content-image.php:17
+#: partials/content-page.php:19
+#: partials/content-quote.php:33
+#: partials/content-status.php:31
+#: partials/content.php:38
+msgid "Continue reading <span class=\"meta-nav\">&rarr;</span>"
+msgstr "Lees verder <span class=\"meta-nav\">&rarr;</span>"
+
+#@ cabarave
+#: functions.php:455
+msgid "Pingback:"
+msgstr "Pingback:"
+
+#@ cabarave
+#. translators: 1: comment author, 2: date and time
+#: functions.php:473
+#, php-format
+msgid "%1$s <span class=\"says\">said</span> on %2$s:"
+msgstr "%1$s <span class=\"says\">zei</span> op %2$s:"
+
+#@ cabarave
+#. translators: 1: date, 2: time
+#: functions.php:479
+#, php-format
+msgid "%1$s at %2$s"
+msgstr "%1$s om %2$s"
+
+#@ cabarave
+#: functions.php:486
+msgid "Your comment is awaiting moderation."
+msgstr "Uw reactie moet gemodereerd worden, voordat hij publiekelijk wordt getoond."
+
+#@ cabarave
+#: functions.php:495
+msgid "Reply <span>&darr;</span>"
+msgstr "Reageren <span>&darr;</span>"
+
+#@ cabarave
+#: functions.php:559
+msgid "Name"
+msgstr "Naam"
+
+#@ cabarave
+#: functions.php:562
+#: functions.php:588
+msgid "required"
+msgstr "verplicht"
+
+#@ cabarave
+#: functions.php:585
+msgid "Email"
+msgstr "E-mail"
+
+#@ cabarave
+#: functions.php:588
+msgid "will not be published"
+msgstr "wordt niet gepubliceerd"
+
+#@ cabarave
+#: functions.php:609
+msgid "Website"
+msgstr "Website"
+
+#@ cabarave
+#: functions.php:804
+#, php-format
+msgid "%d comment"
+msgid_plural "%d comments"
+msgstr[0] "%d reactie"
+msgstr[1] "%d reacties"
+
+#@ cabarave
+#: functions.php:870
+msgid "This post is password protected. To view it please enter your password below:"
+msgstr "Dit bericht is beveiligd met een wachtwoord. Om het bericht te bekijken kunt u uw wachtwoord hieronder invoeren:"
+
+#@ cabarave
+#: functions.php:870
+msgid "Password:"
+msgstr "Wachtwoord:"
+
+#@ cabarave
+#: functions.php:870
+msgid "Submit"
+msgstr "Verzenden"
+
+#@ cabarave
+#: header.php:42
+msgid "Main menu"
+msgstr "Hoofdmenu"
+
+#@ cabarave
+#: header.php:43
+msgid "Skip to primary content"
+msgstr "Ga naar hoofdinhoud"
+
+#@ cabarave
+#: header.php:44
+msgid "Skip to secondary content"
+msgstr "Ga naar subinhoud"
+
+#@ cabarave
+#: image.php:47
+msgid "image"
+msgid_plural "images"
+msgstr[0] "afbeelding"
+msgstr[1] "afbeeldingen"
+
+#@ cabarave
+#: image.php:56
+msgid "Leave a comment"
+msgstr "Reactie achterlaten"
+
+#@ cabarave
+#: image.php:59
+msgid "&laquo; Previous Photo"
+msgstr "&laquo; Vorige afbeelding"
+
+#@ cabarave
+#: image.php:61
+msgid "Next Photo &raquo;"
+msgstr "Volgende afbeelding &raquo;"
+
+#@ cabarave
+#: inc/cabarave-image-meta-widget.php:27
+msgid "Cabarave Image Meta Widget"
+msgstr "Cabarave Afbeelding Meta Widget"
+
+#@ cabarave
+#: inc/cabarave-image-meta-widget.php:29
+msgid "Displays meta information on image attachment pages"
+msgstr "Toon meta-informatie op afbeelding bijlage pagina's"
+
+#@ cabarave
+#: inc/cabarave-image-meta-widget.php:51
+msgid "Info"
+msgstr "Informatie"
+
+#@ cabarave
+#: inc/cabarave-image-meta-widget.php:59
+msgid "Created:"
+msgstr "Aangemaakt:"
+
+#@ cabarave
+#: inc/cabarave-image-meta-widget.php:63
+msgid "Full size:"
+msgstr "Volledige grootte:"
+
+#@ cabarave
+#: inc/cabarave-image-meta-widget.php:64
+#, php-format
+msgid "%s pixels"
+msgstr "%s pixels"
+
+#@ cabarave
+#: inc/cabarave-image-meta-widget.php:67
+msgid "Aperture:"
+msgstr "Diafragmawaarde:"
+
+#@ cabarave
+#: inc/cabarave-image-meta-widget.php:72
+msgid "Focal length:"
+msgstr "Brandpuntafstand:"
+
+#@ cabarave
+#: inc/cabarave-image-meta-widget.php:77
+msgid "Iso:"
+msgstr "Gevoelligheid (ISO):"
+
+#@ cabarave
+#: inc/cabarave-image-meta-widget.php:82
+msgid "Shutter:"
+msgstr "Belichtingsduur:"
+
+#@ cabarave
+#: inc/cabarave-image-meta-widget.php:101
+msgid "Camera:"
+msgstr "Model:"
+
+#@ cabarave
+#: inc/cabarave-image-meta-widget.php:152
+msgid "Title:"
+msgstr "Titel:"
+
+#@ cabarave
+#: partials/content-aside.php:17
+#: partials/content-gallery.php:17
+#: partials/content-quote.php:17
+#: partials/content-status.php:17
+#: partials/content.php:16
+#: partials/content.php:21
+#, php-format
+msgid "Permalink to %s"
+msgstr "Permalink voor %s"
+
+#@ cabarave
+#: partials/content-gallery.php:51
+#, php-format
+msgid "This gallery contains <strong>%1$s photo</strong>."
+msgid_plural "This gallery contains <strong>%1$s photos</strong>."
+msgstr[0] "Deze galerie bevat <strong>%1$s foto</strong>."
+msgstr[1] "Deze galerie bevat <strong>%1$s foto's</strong>."
+
+#@ cabarave
+#. translators: used between list items, there is a space after the comma
+#: partials/content-image.php:24
+#: partials/content-quote.php:41
+#: partials/content-quote.php:51
+msgid ", "
+msgstr ", "
+
+#@ cabarave
+#: partials/content-image.php:28
+#, php-format
+msgid " <span class=\"%1$s\">in</span> %2$s"
+msgstr " <span class=\"%1$s\">in</span> %2$s"
+
+#@ cabarave
+#: partials/content-no-results.php:14
+msgid "Nothing Found"
+msgstr "Niks gevonden"
+
+#@ cabarave
+#: partials/content-no-results.php:19
+msgid "Sorry, but nothing matched your search criteria. Please try again with some different keywords."
+msgstr "Onze excuses, er kon niets gevonden worden. Probeer het opnieuw met andere trefwoorden."
+
+#@ cabarave
+#: partials/content-no-results.php:21
+msgid "Apologies, but no results were found for the requested archive. Perhaps searching will help find a related post."
+msgstr "Onze excuses, in dit archief zijn geen resultaten gevonden. U kunt de zoekfunctie proberen."
+
+#@ cabarave
+#: partials/content-quote.php:45
+#, php-format
+msgid "<span class=\"%1$s\">Posted in</span> %2$s"
+msgstr "<span class=\"%1$s\">Gepubliceerd onder</span> %2$s"
+
+#@ cabarave
+#: partials/content-quote.php:57
+#, php-format
+msgid "<span class=\"%1$s\">Tagged</span> %2$s"
+msgstr "<span class=\"%1$s\">Getagged met</span> %2$s"
+
+#@ cabarave
+#: comments.php:67
+#: partials/content-quote.php:66
+msgid "Leave a reply"
+msgstr "Reactie achterlaten"
+
+#@ cabarave
+#: partials/content-single.php:29
+#: partials/content.php:47
+#, php-format
+msgid "Posted in %1$s."
+msgstr "Geplaatst in %1$s."
+
+#@ cabarave
+#: partials/content-single.php:30
+#: partials/content-single.php:34
+#: partials/content.php:48
+msgctxt "used between list items, there is a space after the comma"
+msgid ", "
+msgstr ", "
+
+#@ cabarave
+#: partials/content-single.php:33
+msgid "Tagged "
+msgstr "Getagged"
+
+#@ cabarave
+#: partials/content-single.php:47
+#, php-format
+msgid "View all posts by %s <span class=\"meta-nav\">&rarr;</span>"
+msgstr "Bekijk alle berichten van %s <span class=\"meta-nav\">&rarr;</span>"
+
+#@ cabarave
+#: partials/content.php:17
+msgid "Featured"
+msgstr "Uitgelicht"
+
+#@ cabarave
+#: search.php:20
+#, php-format
+msgid "Search Results for: %s"
+msgstr "Zoekresultaten voor: %s"
+
+#@ cabarave
+#: searchform.php:13
+#: searchform.php:14
+#: searchform.php:15
+msgid "Search"
+msgstr "Zoeken"
+
+#@ cabarave
+#: sidebar.php:14
+msgid "Archives"
+msgstr "Archief"
+
+#@ cabarave
+#: sidebar.php:21
+msgid "Meta"
+msgstr "Meta"
+
+#@ cabarave
+#: single.php:25
+msgid "Post navigation"
+msgstr "Bericht navigatie"
+
+#@ cabarave
+#: single.php:26
+msgid "<span class=\"meta-nav\">&larr;</span> Next Post"
+msgstr "<span class=\"meta-nav\">&larr;</span> Volgende bericht"
+
+#@ cabarave
+#: single.php:27
+msgid "Previous Post <span class=\"meta-nav\">&rarr;</span>"
+msgstr "Vorige Bericht <span class=\"meta-nav\">&rarr;</span>"
+
+#@ cabarave
+#: tag.php:21
+#, php-format
+msgid "Tag Archives: %s"
+msgstr "Tag archief: %s"
+
+#@ cabarave
+#: comments.php:68
+#, php-format
+msgid "Leave a reply to %s"
+msgstr "Reactie voor %s achterlaten"
+
