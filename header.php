@@ -92,7 +92,7 @@
 											'depth'				=>	3,
 											'fallback_cb'		=>	false,
 											'walker'			=>	new cabarave_Nav_Walker,
-										) ); 
+										) ); ?>
                                                                         </div>
 								</div>
 							</div>
