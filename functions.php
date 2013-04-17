@@ -43,12 +43,8 @@ function cabarave_setup() {
 	
 	add_theme_support( 'tha_hooks', array( 'all' ) );
 
-	if ( version_compare( get_bloginfo( 'version' ), '3.4', '<' ) )
-		// Custom Theme Options
-		require_once( get_template_directory() . '/inc/theme-options.php' );
-	else
-		// Implement the Theme Customizer script
-		require_once( get_template_directory() . '/inc/theme-customizer.php' );
+	// Implement the Theme Customizer script
+	require_once( get_template_directory() . '/inc/theme-customizer.php' );
 	
 	/**
 	 * Custom template tags for this theme.
@@ -134,6 +130,7 @@ function my_theme_wrapper_end() { ?>
 		</div><!-- #content -->
 	</section><!-- #primary --> <?php
 }
+
 /**
  * Returns the options object for Cabarave.
  *
@@ -159,18 +156,9 @@ function cabarave_options() {
  * @return	void
  */
 function cabarave_get_default_theme_options() {
-	$default_theme_options	=	array(
-		'theme_layout'		=>	'content-sidebar',
-		'navbar_site_name'	=>	false,
-		'navbar_searchform'	=>	true,
-		'navbar_inverse'	=>	true,
-		'navbar_position'	=>	'static',
-                'navbar_logo'           =>      true
-	);
-
+	$default_theme_options	=  thsp_cbp_get_options_defaults();
 	return apply_filters( 'cabarave_default_theme_options', $default_theme_options );
 }
-
 
 /**
  * Adds Cabarave layout classes to the array of body classes.
@@ -187,7 +175,6 @@ function cabarave_layout_classes( $existing_classes ) {
 	return array_merge( $existing_classes, $classes );
 }
 add_filter( 'body_class', 'cabarave_layout_classes' );
-
 
 /**
  * Adds Custom Background support
