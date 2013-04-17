@@ -71,10 +71,10 @@
 									<?php } elseif ( get_theme_mod( 'logo_image_position', 'in-nav' ) == 'in-nav' ) {
                                 						skematik_logo();
 									} ?>
-									<div class="pull-right"><?php
-										if ( the_bootstrap_options()->navbar_searchform ) {
-											the_bootstrap_navbar_searchform();
-										}
+									<div id="menu-right" class="pull-right"><?php
+										if ( cabarave_options()->navbar_searchform ) {
+											cabarave_navbar_searchform();
+										} ?>
 
 										if ( get_theme_mod( 'navbar_cart', 1 ) == 1 ) {
 											skematik_cart_dropdown();
@@ -93,10 +93,7 @@
 											'fallback_cb'		=>	false,
 											'walker'			=>	new cabarave_Nav_Walker,
 										) ); 
-										if ( cabarave_options()->navbar_searchform ) {
-											cabarave_navbar_searchform();
-										} ?>
-								    </div>
+                                                                        </div>
 								</div>
 							</div>
 						</div>

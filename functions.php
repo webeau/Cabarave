@@ -69,6 +69,13 @@ function cabarave_setup() {
 	 * Theme Hook Alliance
 	 */
 	require_if_theme_supports( 'tha_hooks', get_template_directory() . '/inc/tha-theme-hooks.php' );
+        
+        /*
+         * Remove Theme SEO if Wordpress SEO is active.
+         */
+        if ( defined('WPSEO_VERSION') ) {
+            // Disable your SEO stuff
+        }
 	
 	/**
 	 * Including three menu (header-menu, primary and footer-menu).
@@ -158,6 +165,7 @@ function cabarave_get_default_theme_options() {
 		'navbar_searchform'	=>	true,
 		'navbar_inverse'	=>	true,
 		'navbar_position'	=>	'static',
+                'navbar_logo'           =>      true
 	);
 
 	return apply_filters( 'cabarave_default_theme_options', $default_theme_options );

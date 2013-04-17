@@ -20,7 +20,7 @@
  * 
  * @return	void
  */
-function cabarave_customize_register( $wp_customize ) {
+function cabarave_customize_register( $wp_customize ) {      
 	$wp_customize->get_setting( 'blogname' )->transport	= 'postMessage';
 	$wp_customize->get_setting( 'blogdescription' )->transport = 'postMessage';
 	
@@ -41,7 +41,12 @@ function cabarave_customize_register( $wp_customize ) {
 			'transport'		=>	'postMessage',
 		) );
 	}
-	
+        
+        // Navbar Width
+	$wp_customize->add_setting( 'navbar_width', array(
+                'default'       => 'full-width',
+	) );
+          
 	// Theme Layout
 	$wp_customize->add_control( 'cabarave_theme_layout', array(
 		'label'		=>	__( 'Default Layout', 'cabarave' ),
@@ -69,7 +74,7 @@ function cabarave_customize_register( $wp_customize ) {
 		'settings'	=>	'cabarave_theme_options[navbar_searchform]',
 		'type'		=>	'checkbox',
 	) );
-	
+        
 	// Navbar Colors
 	$wp_customize->add_control( 'cabarave_navbar_inverse', array(
 		'label'		=>	__( 'Use inverse color on navigation bar.', 'cabarave' ),
@@ -90,9 +95,38 @@ function cabarave_customize_register( $wp_customize ) {
 			'navbar-fixed-bottom'	=>	__( 'Fixed at bottom.', 'cabarave' ),
 		),
 	) );
+		
+	$wp_customize->add_control( 'navbar_width', array(
+		'label'         => 'Navigation Bar Width:',
+		'section'       => 'container_settings',
+		'type'          => 'select',
+		'priority'      => 10,
+		'choices'    => array(
+                        'full-width' => null,
+			1200 => '1200px',
+			980 => '980px',
+		),
+	) );
 }
 add_action( 'customize_register', 'cabarave_customize_register' );
 
+
+function cabarave_customizer() { 
+        class Cabarave_Customize_Textarea_Control extends WP_Customize_Control {
+            
+            public $type = 'textarea';
+ 
+            public function render_content() {
+                ?>
+                <label>
+                    <span class="customize-control-title"><?php echo esc_html( $this->label ); ?></span>
+                    <textarea rows="5" style="width:100%;" <?php $this->link(); ?>><?php echo esc_textarea( $this->value() ); ?></textarea>
+                </label>
+                <?php
+            }
+        } 
+}
+add_action( 'customize_register', 'cabarave_customizer');
 
 /**
  * Adds controls to change settings instantly
